@@ -45,7 +45,7 @@ class DataSource(DataProxy):
     def get_data_last_date(self):
         """返回最新数据日期"""
         if self._last_date_date is not None:
-            return self._last_date_dateget
+            return self._last_date_date
 
         d = self._data_source
 
@@ -83,8 +83,9 @@ class DataSource(DataProxy):
 
         data_bundle_path = self._data_bundle_path
         data_bundle_path = data_bundle_path[:len(data_bundle_path) - len('/bundle')]
-        from rqalpha import main
-        main.update_bundle(data_bundle_path=data_bundle_path)
+        from rqalpha import update_bundle
+        update_bundle(data_bundle_path=data_bundle_path)
+
 
         if not skip_last_date_check:
             date = self.get_data_last_date()
